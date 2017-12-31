@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Chart from '../components/chart';
 import GoogleMap from '../components/google_map';
 
-
 class WeatherList extends Component {
   renderWeather(cityData) {
     const name = cityData.city.name;
@@ -14,7 +13,8 @@ class WeatherList extends Component {
 
     return (
       <tr key={name}>
-        <td><GoogleMap lat={lat} lon={lon} /></td>
+        {/*<td><GoogleMap lon={lon} lat={lat} /></td> */}
+        <td>{name}</td>
         <td><Chart data={temps} color="orange" units="K" /></td>
         <td><Chart data={pressures} color="green" units="hPa" /></td>
         <td><Chart data={humidities} color="black" units="%" /></td>
@@ -41,13 +41,6 @@ class WeatherList extends Component {
   }
 }
 
-/**
-* @desc because we need this component to
-* listen for changes to our store's this.state.weather
-* property, we connect it to the components props here.
-* now any change that happens will call this function
-* and we can access the data via this.props.weather
-*/
 function mapStateToProps({ weather }) {
   return { weather };
 }
